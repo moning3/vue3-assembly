@@ -1,13 +1,15 @@
 <template>
 
   <div class="content">
-    <div class="tooltip-box">
-      <!-- <Tooltip :data="posts[0].msg" :pos="posts[0].loc">
-        <div class="">{{posts[0].loc}}</div>
-      </Tooltip> -->
+    <!-- <div class="tooltip-box">
 
-      <Tooltip :data="posts[1].msg" :pos="posts[1].loc">
-        <div class="">{{posts[1].loc}}</div>
+      <Tooltip :data="msg" :pos="loc">
+        <div>{{loc}}</div>
+      </Tooltip>
+    </div> -->
+    <div class="tooltip-box" v-for="item in posts" :key="item.id" :class="`tooltip-postion-${item.loc}`">
+      <Tooltip :data="item.msg" :pos="item.loc">
+        <div>{{item.data}}</div>
       </Tooltip>
     </div>
   </div>
@@ -18,19 +20,15 @@ import { ref } from "vue";
 import Tooltip from "./components/Tooltip.vue";
 
 const msg = ref("描述内容展示,描述内容展示.描述内容展示/描述内容展示");
-const loc = ref("top");
+const loc = ref("bottom");
 
 const posts = [
-  { id: 1, data: "内容1111", msg: "描述内容～", loc: "top" },
-  { id: 2, data: "内容2222", msg: "描述内容-", loc: "left" },
-  { id: 3, data: "内容3333", msg: "描述内容@", loc: "right" },
-  { id: 4, data: "内容4444", msg: "描述内容&", loc: "bottom" }
+  { id: 1, data: "内容1111", msg: "描述内容1213", loc: "top" },
+  { id: 2, data: "内容2222", msg: "描述内容非常v出现", loc: "left" },
+  { id: 3, data: "内容3333", msg: "描述内容实打实的撒", loc: "right" },
+  { id: 4, data: "内容4444", msg: "描述内容是歌功颂德分", loc: "bottom" }
 ];
 </script>
 
-<style>
-.tooltip-box {
-  position: relative;
-  line-height: 30px;
-}
+ <style lang="scss" scoped>
 </style>
