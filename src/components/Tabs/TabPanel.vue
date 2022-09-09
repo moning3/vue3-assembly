@@ -1,5 +1,7 @@
 <template lang="">
-    <slot/>
+    <div class="tab-panel-content">
+      <slot/>
+    </div>
 </template>
 <script setup>
 </script>

@@ -9,9 +9,9 @@
 
     <div class="tabs-content">
       <Tabs :tabs-list="tabList">
-        <tab-panel v-for="tab in tabList" :key="tab.id">
-          {{tab.msg}}
-        </tab-panel>
+        <TabPanel>
+          
+        </TabPanel>
       </Tabs>
     </div>
   </div>
@@ -21,7 +21,7 @@
 import { ref } from "vue";
 import Tooltip from "./components/Tooltip.vue";
 import Tabs from "./components/Tabs/Tabs.vue";
-import tabPanel from "./components/Tabs/TabPanel.vue";
+import TabPanel from "./components/Tabs/TabPanel.vue";
 
 const posts = [
   { id: 1, data: "内容1111", msg: "描述内容1213", loc: "top" },

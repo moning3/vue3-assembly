@@ -1,7 +1,9 @@
 <template lang="">
-    
-        <TabList :list="getList"></TabList>
-    
+  <div class="tabs-content">
+    <TabList :list="getList" @changeCurrentTab="changeCurrentTab"></TabList>
+    <slot></slot>
+  </div>
+   
 </template>
 <script setup>
 import TabList from "./TabList.vue";
@@ -15,6 +17,11 @@ const props = defineProps({
 const getList = computed(() => {
   return props.tabsList;
 });
+
+let currentActive;
+const changeCurrentTab = (value) =>{
+  currentActive = value
+}
 </script>
 <style lang="scss">
 </style>

@@ -11,7 +11,6 @@ const props = defineProps({
 const getData = computed(() => {
   return props.section;
 });
-// console.log(props.isActive);
 </script>
 <style lang="scss">
 .tab-section {
