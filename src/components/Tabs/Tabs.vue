@@ -1,13 +1,13 @@
 <template lang="">
   <div class="tabs-content">
-    <TabList :list="getList" @changeCurrentTab="changeCurrentTab"></TabList>
+    <TabList :list="getList"></TabList>
     <slot></slot>
   </div>
    
 </template>
 <script setup>
 import TabList from "./TabList.vue";
-import { defineProps, computed } from "vue";
+import { defineProps, ref, computed, provide } from "vue";
 const props = defineProps({
   tabsList: {
     type: Array,
@@ -18,10 +18,10 @@ const getList = computed(() => {
   return props.tabsList;
 });
 
-let currentActive;
-const changeCurrentTab = (value) =>{
-  currentActive = value
-}
+const current = ref(0);
+provide('current', current);
+
+
 </script>
 <style lang="scss">
 </style>

@@ -9,9 +9,7 @@
 
     <div class="tabs-content">
       <Tabs :tabs-list="tabList">
-        <TabPanel>
-          
-        </TabPanel>
+        <TabPanel :tabs-list="tabList"></TabPanel>
       </Tabs>
     </div>
   </div>
