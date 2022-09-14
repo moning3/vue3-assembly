@@ -1,5 +1,7 @@
 <template lang="">
-  <button class="button-default" :class="type"></button>
+  <button class="button-default" :class="type">
+    <slot/>
+  </button>
 </template>
 <script setup>
 import { computed } from '@vue/reactivity';
@@ -9,7 +11,7 @@ import { defineProps } from 'vue';
     type: String
   })
   const type = computed(() =>{
-    return props.type
+    return `button-${props.type}`
   })
 </script>
 <style lang="scss">
@@ -29,7 +31,8 @@ import { defineProps } from 'vue';
     transition: .1s;
     border: 1px solid #dcdfe6;
     padding: 8px 15px;
-    background-color: #fff;;
+    background-color: #fff;
+    margin-left: 10px;
   }
   .button-primary{
     background-color: #409eff;
