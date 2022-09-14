@@ -12,14 +12,30 @@
         <TabPanel :tabs-list="tabList"></TabPanel>
       </Tabs>
     </div>
+
+    <div class="dialog-content">
+      <button @click="dialogVisible = true">显示弹窗</button>
+    </div>
+
+    <Dialog v-model="dialogVisible" title="Tip" width="30%" :before-close="handleClose">
+      <span>This is a message.</span>
+      <template>
+        <span>
+          <Button @click="dialogVisible = false">Cancel</Button>
+          <Button type="primary" @click="dialogVisible = false">Confirm</Button>
+        </span>
+      </template>
+    </Dialog>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import Tooltip from "./components/Tooltip.vue";
-import Tabs from "./components/Tabs/Tabs.vue";
-import TabPanel from "./components/Tabs/TabPanel.vue";
+// import Tooltip from "./components/Tooltip.vue";
+// import Tabs from "./components/Tabs/Tabs.vue";
+// import TabPanel from "./components/Tabs/TabPanel.vue";
+// import Dialog from "./components/Dialog/Dialog.vue"
+
 
 const posts = [
   { id: 1, data: "内容1111", msg: "描述内容1213", loc: "top" },
@@ -32,6 +48,8 @@ const tabList = [
   { id: 2, name: "section2", msg: "内容内容内容Panel222222" },
   { id: 3, name: "section3", msg: "内容内容内容Panel33333" }
 ];
+
+const dialogVisible = ref(false)
 </script>
 
  <style lang="scss" scoped>
