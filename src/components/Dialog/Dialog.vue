@@ -1,6 +1,8 @@
 <template lang="">
   <div class="dialog-overlay" v-if="value">
-    <div class="dialog-content">
+    
+  </div>
+  <div class="dialog-content" :style="{ width: width }"  v-if="value">
       <div class="dialog-title">{{ title }}<span @click="close()">x</span></div>
       <div class="dialog-main">
         <slot/>
@@ -9,7 +11,6 @@
         <slot name="footer"></slot>
       </footer>
     </div>
-  </div>
 </template>
 <script setup>
 import { computed } from '@vue/reactivity';
@@ -23,6 +24,9 @@ const props = defineProps({
   },
   modelValue:{
     type: Boolean
+  },
+  width: {
+    type: String
   }
 })
 const emit = defineEmits(['updata: modelValue'])
@@ -53,11 +57,14 @@ const close = computed(() => {
     background: #000;
     z-index: 10000;
     opacity:0.6; 
-    .dialog-content{
-      position:absolute;
+  }
+  .dialog-content{
+      position:fixed;
       left:50%;
 		  top:50%;
-		  z-index:1;
+      box-sizing: border-box;
+      padding: 10px;
+		  z-index:10001;
 		  transform:translate(-50%,-50%);
       background-color: #000;
     .dialog-title{
@@ -67,7 +74,6 @@ const close = computed(() => {
         cursor: pointer;
       }
     }
-  }
   }
   
 </style>
