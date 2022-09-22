@@ -1,7 +1,7 @@
 <template>
   <div class="tooltip-content" v-for="item in posts" :key="item.id" :class="`tooltip-postion-${item.loc}`">
       <Tooltip :data="item.msg" :pos="item.loc">
-        <div>{{item.data}}</div>
+        {{item.data}}
       </Tooltip>
     </div>
 </template>
@@ -15,6 +15,7 @@ const posts = [
   { id: 3, data: "内容3333", msg: "描述内容实打实的撒", loc: "right" },
   { id: 4, data: "内容4444", msg: "描述内容是歌功颂德分", loc: "bottom" }
 ];
+
 </script>
 
 <style lang="scss" scoped>

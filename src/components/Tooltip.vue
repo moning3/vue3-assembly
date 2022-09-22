@@ -5,7 +5,7 @@
             <div class="tooltip-bubble-arrow"></div>
             {{ getData }}
         </div>
-        <slot />
+        <div class="tooltip-main"><slot /></div>
     </div>
 </template>
 
@@ -21,8 +21,16 @@ const props = defineProps({
   }
 });
 
+// const itemRefs = ref();
+
+const slotRef = ref()
+const setSlotRef = (el) => {
+  slotRef.value = el;
+}
+
+
 // const emit = defineEmits([updata]);
-let tooltipVisible = ref(true);
+let tooltipVisible = ref(false);
 
 const getData = computed(() => {
   return props.data;
@@ -32,27 +40,46 @@ const getBubblePosition = computed(() => {
   return `tooltip-bubble-position-${props.pos}`;
 });
 
-let positionStyle = ref();
+let positionStyle = ref({});
 const tooltipShow = (event) => {
-  console.log(event);
-  const position = `{ ${props.pos}: ${event.clientX}, left: ${event.clientY} }`
-  positionStyle.value = position
-  console.log(positionStyle)
+  // console.log(event);
+  positionStyle.value = getPosition(event)
+  // console.log(positionStyle)
   tooltipVisible.value = true;
 };
+const getPosition = (event) => {
+  let position;
+  const eventData = event.target.getBoundingClientRect()
+  // console.log(itemRefs.value)
+  console.log(slotRef.value)
+  // console.log(eventData)
+  if(props.pos === 'top') {
+    position = { top: eventData.top - 35 + 'px', left: eventData.left + 'px' }
+  }
+  if(props.pos === 'left') {
+    position = { top: eventData.top + 'px', right: eventData.right - eventData.width + 5 + 'px' }
+  }
+  if(props.pos === 'right') {
+    position = { top: eventData.top + 'px', left: eventData.right - eventData.width + 'px' }
+  }
+  if(props.pos === 'bottom') {
+    position = { top: eventData.bottom + 'px', left: eventData.left + 'px' }
+  }
+  return position
+}
 
 const tooltipHide = () => {
-  tooltipVisible.value = true;
-  positionStyle.value = ''
+  tooltipVisible.value = false;
+  positionStyle.value = {};
 };
 </script>
 
 <style lang="scss" scope>
 .tooltip-content {
   // position: relative;
-  line-height: 30px;
+  // line-height: 30px;
   .tooltip-bubble {
-    position: absolute;
+    position: fixed;
     min-width: 80px;
     max-width: 200px;
     border: 1px solid #fff;
@@ -79,8 +106,8 @@ const tooltipHide = () => {
     }
   }
   .tooltip-bubble-position-left {
-    left: -15px;
-    transform: translateX(-100%);
+    // left: -15px;
+    // transform: translateX(-100%);
     .tooltip-bubble-arrow {
       right: -10px;
       top: 10px;
@@ -88,8 +115,8 @@ const tooltipHide = () => {
     }
   }
   .tooltip-bubble-position-right {
-    right: -15px;
-    transform: translateX(100%);
+    // right: -15px;
+    // transform: translateX(100%);
     .tooltip-bubble-arrow {
       left: -10px;
       top: 10px;
@@ -97,13 +124,17 @@ const tooltipHide = () => {
     }
   }
   .tooltip-bubble-position-bottom {
-    bottom: -5px;
-    transform: translateY(100%);
+    // bottom: -5px;
+    // transform: translateY(100%);
     .tooltip-bubble-arrow {
       left: 0px;
       top: -8px;
       border-width: 0 5px 8.7px 5px;
     }
+  }
+  .tooltip-main{
+    line-height: 30px;
+    min-height: 30px;
   }
 }
 </style>
