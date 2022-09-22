@@ -1,6 +1,7 @@
 <template>
     <div class="tooltip-content" @mouseenter="tooltipShow" @mouseleave="tooltipHide">
-        <div class="tooltip-bubble" :class="getBubblePosition" v-if="tooltipVisible">
+        <div class="tooltip-bubble" :style="positionStyle"
+          :class="getBubblePosition" v-if="tooltipVisible">
             <div class="tooltip-bubble-arrow"></div>
             {{ getData }}
         </div>
@@ -9,7 +10,7 @@
 </template>
 
 <script setup>
-import { defineProps, computed, defineEmits, ref, reactive } from "vue";
+import { defineProps, computed, defineEmits, ref } from "vue";
 
 const props = defineProps({
   data: {
@@ -21,7 +22,7 @@ const props = defineProps({
 });
 
 // const emit = defineEmits([updata]);
-let tooltipVisible = ref(false);
+let tooltipVisible = ref(true);
 
 const getData = computed(() => {
   return props.data;
@@ -31,19 +32,24 @@ const getBubblePosition = computed(() => {
   return `tooltip-bubble-position-${props.pos}`;
 });
 
-const tooltipShow = () => {
-  console.log("鼠标进入.");
+let positionStyle = ref();
+const tooltipShow = (event) => {
+  console.log(event);
+  const position = `{ ${props.pos}: ${event.clientX}, left: ${event.clientY} }`
+  positionStyle.value = position
+  console.log(positionStyle)
   tooltipVisible.value = true;
 };
 
 const tooltipHide = () => {
-  tooltipVisible.value = false;
+  tooltipVisible.value = true;
+  positionStyle.value = ''
 };
 </script>
 
 <style lang="scss" scope>
 .tooltip-content {
-  position: relative;
+  // position: relative;
   line-height: 30px;
   .tooltip-bubble {
     position: absolute;
@@ -64,8 +70,8 @@ const tooltipHide = () => {
     }
   }
   .tooltip-bubble-position-top {
-    top: -5px;
-    transform: translateY(-100%);
+    // top: -5px;
+    // transform: translateY(-100%);
     .tooltip-bubble-arrow {
       left: 0px;
       bottom: -8px;

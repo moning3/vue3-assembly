@@ -1,15 +1,17 @@
 <template lang="">
     <div class="tab-panel-content">
-      {{tabsList[currentTab].msg}}
+      <!-- {{tabsList[currentTab].msg}} -->
       <slot/>
     </div>
 </template>
 <script setup>
 import { defineProps, inject } from 'vue';
 const props = defineProps({
-  tabsList: {
-    type: Array,
-    default: []
+  label: {
+    type: String
+  },
+  name: {
+    type: String
   }
 });
 // 默认当前选中tab

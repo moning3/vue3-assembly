@@ -1,5 +1,5 @@
 <template>
-  <span class="tab-section">{{getData}}</span>
+  <span class="tab-section">{{ getData }}</span>
 </template>
 <script setup>
 import { defineProps, computed } from "vue";

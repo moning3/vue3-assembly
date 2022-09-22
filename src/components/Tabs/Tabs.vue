@@ -3,11 +3,11 @@
     <TabList :list="getList"></TabList>
     <slot></slot>
   </div>
-   
 </template>
 <script setup>
-import TabList from "./TabList.vue";
 import { defineProps, ref, computed, provide } from "vue";
+import TabList from "./TabList.vue";
+
 const props = defineProps({
   tabsList: {
     type: Array,

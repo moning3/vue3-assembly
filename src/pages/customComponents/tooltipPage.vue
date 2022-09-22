@@ -18,5 +18,7 @@ const posts = [
 </script>
 
 <style lang="scss" scoped>
-
+.tooltip-container {
+  overflow: hidden;
+}
 </style>

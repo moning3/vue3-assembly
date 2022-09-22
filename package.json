@@ -7,6 +7,8 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
+    "@icon-park/vue-next": "^1.4.2",
+    "fast-glob": "^3.2.12",
     "vue": "^3.2.37",
     "vue-router": "^4.1.5"
   },

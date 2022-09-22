@@ -1,6 +1,6 @@
 <template lang="">
     <div>
-        <Tab v-for="(tab, index) in list" :section="tab.name" :key="tab.id"
+        <Tab v-for="(tab, index) in list" :section="tab.title" :key="tab.id"
         :class="{'tab-active': index === currentTab }"
         @click="changeActive(index)">
         </Tab>
